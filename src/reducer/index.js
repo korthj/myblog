@@ -1,8 +1,8 @@
-import { combineReducer } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { combineReducers } from 'redux';
+import blogSearchBar from './blog_search_bar';
 
-const rootReducer = combineReducer ({
-    form: formReducer
-});
+const rootReducer = combineReducers ({
+    posts : blogSearchBar  
+}); 
 
 export default rootReducer;
