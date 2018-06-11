@@ -1,11 +1,11 @@
-import { SERACH_BAR } from '../action/google_search';
+import { FETCH_POSTS,FETCH_POST } from '../action/posts';
 
-
-export default function(state = [], action) {
+export default (state = {}, action) => {
     switch(action.type) {
-        case SERACH_BAR:
-            return [...state, action.payload.data];
+        case FETCH_POSTS:
+        console.log(action.payload)
+            return action.payload
     default:
     return state;
-        }
+    }
 }

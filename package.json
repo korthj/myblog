@@ -6,6 +6,8 @@
     "@material-ui/icons": "^1.0.0-beta.43",
     "ajv": "^6.4.0",
     "axios": "^0.18.0",
+    "create-react-app": "^1.5.2",
+    "firebase": "^4.11.0",
     "material-ui": "^1.0.0-beta.43",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -17,12 +19,13 @@
     "redux": "^4.0.0-rc.1",
     "redux-form": "^7.3.0",
     "redux-promise": "^0.5.3",
-    "webpack": "^4.6.0"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && firebase deploy"
   }
 }

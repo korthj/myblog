@@ -13,7 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems } from './tileData';
-import BlogPosts from '../component/BlogPosts';
+import {Route} from 'react-router-dom';
+import PostShow from '../component/PostShow';
 
 
 const drawerWidth = 240;
@@ -84,7 +85,7 @@ const styles = theme => ({
   },
 });
 
-class MiniDrawer extends React.Component {
+class ShowPost extends React.Component {
   state = {
     open: false,
   };
@@ -138,7 +139,8 @@ class MiniDrawer extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <BlogPosts />
+          
+          <Route path="/posts/:id" component={PostShow}/>
           
         </main>
       </div>
@@ -146,9 +148,9 @@ class MiniDrawer extends React.Component {
   }
 }
 
-MiniDrawer.propTypes = {
+ShowPost.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withStyles(styles, { withTheme: true })(ShowPost);

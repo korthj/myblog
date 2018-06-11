@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems } from './tileData';
-import BlogPosts from '../component/BlogPosts';
+import Me from '../component/Me';
 
 
 const drawerWidth = 240;
@@ -138,7 +138,7 @@ class MiniDrawer extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <BlogPosts />
+          <Me />
           
         </main>
       </div>
