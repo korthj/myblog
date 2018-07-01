@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import data from './blog_search_bar';
+import posts from './blog_search_bar';
+import postsKey from './postKey';
 
 const rootReducer = combineReducers ({    
-    data  
+    posts : posts,
+    postKey : postsKey
 }); 
-
 export default rootReducer;

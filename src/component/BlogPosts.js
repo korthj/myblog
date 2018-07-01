@@ -1,20 +1,20 @@
 import React,{ Component } from 'react';
-import {fetchPosts} from '../action/posts';
+import * as actions from '../action/posts';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class BlogPosts extends Component {
     componentWillMount() {
        this.props.fetchPosts();
+       
     }
 
     renderPosts() {
-        console.log("state"+this.state);
-        console.log("props"+this.props);
-        return Object.keys(this.props.posts).map((key) =>{
+        const id = Object.keys(this.props.posts);
+        return Object.keys(this.props.posts).map((key) =>{            
                   return (
                     <article className="card" key={key}>
-                        <Link to={"/posts/" + this.props.posts[key]}>                    
+                        <Link to={"/posts/" + key } >
                             <picture className="thumbnail">
                                 <img src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt="A banana that looks like a bird"/>
                             </picture>
@@ -31,6 +31,9 @@ class BlogPosts extends Component {
 
 
     render() {
+        if(!this.props.posts) {
+            return <div>Empty Post!</div>
+        };
         return (
             <main className="main-area">                        
                 <div className="centered">
@@ -44,7 +47,10 @@ class BlogPosts extends Component {
 };
 
  function mapStateToProps(state){
-    return {posts : state.data}
+    return {
+        posts : state.posts,
+        postKey : state.postKey
+    };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(BlogPosts);
+export default connect(mapStateToProps, actions)(BlogPosts);

@@ -22,12 +22,21 @@ export const fire = () => {
 export const getFireDB = () => {
     return database.ref('/').once('value')
 };
-
+//게시물을 생성할때 키 값을 가지고와서 1씩 더한다
 export const setPosts = () => {
-    return database.ref('posts/').push({"content" : "ddd","title" : "ddd","userId" : "ddd" })
+    return database.ref('posts/').push({"content" : " abc","title" : " abc","userId" : " abc" })
 };
-///////////get Posts
-firebase.initializeApp(config);
+//getPosts
 
-const databaseRef = firebase.database().ref();
-export const getPosts = databaseRef.child("posts");
+export const getPosts = () => {
+    if(!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
+    return firebase.database().ref().child('posts')
+};
+
+/////////////fetch post
+//showpost에서 child('postId')를 구현한다.
+export const getPost = (postId) => {
+    return database.ref('posts/' + postId)
+}
