@@ -43,18 +43,17 @@ export default class PostShow extends Component {
                 <div className="col-lg-8">                
                 <h1 className="mt-4">{post.title}</h1>                
                 <p className="lead">
-                    <a href="#">{post.content}</a>
+                    <a href="#">{post.category}</a>
                 </p>
                 <hr/>                
-                <p>Posted on January 1, 2018 at 12:00 PM</p>
+                <p>게시물 생성 날짜</p>
                 <hr/>                
                 <img className="img-fluid rounded" src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt=""/>
                 <hr/>                
-                <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-                <p>{post.content}</p>
+                <p className="lead">{post.content} </p>
                 <hr/>                
                 <div className="card my-4">
-                    <h5 className="card-header">Leave a Comment:</h5>
+                    <h5 className="card-header">댓글 작성</h5>
                     <div className="card-body">
                     <form>
                         <div className="form-group">
@@ -68,7 +67,7 @@ export default class PostShow extends Component {
                 <img className="rounded-circle" src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt="img area"/>                   
                     <div className="media-body">                     
                     <h5 className="mt-0">User Name Area</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    댓글 내용
                     </div>
                 </div>
                 </div>

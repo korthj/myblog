@@ -12,7 +12,7 @@ export const fetchPosts = () => {
             snapshot.forEach(ss => {
                 posts.push(ss.val());
             });         
-            posts.reverse();
+            posts.reverse();//배열을 뒤집어 가장 최근글을 처음에 보여준다.
             dispatch({
                 type: FETCH_POSTS,
                 payload: posts           

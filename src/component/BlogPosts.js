@@ -8,13 +8,13 @@ class BlogPosts extends Component {
        this.props.fetchPosts();
        
     }
-
+    //화면상 출력은 최근것 부터이지만 맵핑 시 링크는 오래된게 처음에 온다.
     renderPosts() {
-        const id = Object.keys(this.props.posts);
-        return Object.keys(this.props.posts).map((key) =>{            
+        const id = Object.keys(this.props.posts).reverse();
+        return Object.keys(this.props.posts).map((key) =>{
                   return (
                     <article className="card" key={key}>
-                        <Link to={"/posts/" + key } >
+                        <Link to={"/posts/" + id[key] } >
                             <picture className="thumbnail">
                                 <img src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt="A banana that looks like a bird"/>
                             </picture>

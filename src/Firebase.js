@@ -24,7 +24,7 @@ export const getFireDB = () => {
 };
 //게시물을 생성할때 키 값을 가지고와서 1씩 더한다
 export const setPosts = () => {
-    return database.ref('posts/').push({"content" : " abc","title" : " abc","userId" : " abc" })
+    return database.ref('posts/').push({"content" : " abc","title" : " abc","userId" : " abc","category" : "" })
 };
 //getPosts
 
