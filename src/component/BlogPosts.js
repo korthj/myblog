@@ -35,7 +35,7 @@ class BlogPosts extends Component {
             return <div>Empty Post!</div>
         };
         return (
-            <main className="main-area">                        
+            <main className="main-area">
                 <div className="centered">
                     <section className="cards">  
                         {this.renderPosts()}    

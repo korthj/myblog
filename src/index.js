@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import BlogMain from './component/BlogMain'; 
 import ShowPost from './layout/ShowPost';
 import AboutMe from './layout/AboutMe';
+import SetPostPage from './component/SetPostPage';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
@@ -20,7 +21,8 @@ ReactDOM.render(
             <div>
                 <Route exact path="/" component={ BlogMain } />
                 <Route path="/posts/" component={ ShowPost } />
-                <Route path="/me" component={ AboutMe } />                
+                <Route path="/me" component={ AboutMe } />
+                <Route path="/SetPostPage" component={ SetPostPage } />                
             </div>
         </Router>
     </Provider>, 

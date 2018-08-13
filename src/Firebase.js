@@ -24,7 +24,14 @@ export const getFireDB = () => {
 };
 //게시물을 생성할때 키 값을 가지고와서 1씩 더한다
 export const setPosts = () => {
-    return database.ref('posts/').push({"content" : " abc","title" : " abc","userId" : " abc","category" : "" })
+    const postDate = new Date();
+    const y = postDate.getFullYear();
+    const m = postDate.getMonth()+1;
+    const d = postDate.getDay();
+    const h = postDate.getHours();
+    const min = postDate.getMinutes();
+
+    return database.ref('posts/').push({"content" : "5","title" : "5","userId" : "5","category" : "5","date" :  y+"-"+m+"-"+d+" "+h+":"+min})
 };
 //getPosts
 
@@ -37,6 +44,6 @@ export const getPosts = () => {
 
 /////////////fetch post
 //showpost에서 child('postId')를 구현한다.
-export const getPost = (postId) => {
-    return database.ref('posts/' + postId)
+export const getPost = () => {
+    return database.ref('posts/')
 }

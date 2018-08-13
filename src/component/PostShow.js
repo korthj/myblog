@@ -46,7 +46,7 @@ export default class PostShow extends Component {
                     <a href="#">{post.category}</a>
                 </p>
                 <hr/>                
-                <p>게시물 생성 날짜</p>
+                <p>{post.date}</p>
                 <hr/>                
                 <img className="img-fluid rounded" src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt=""/>
                 <hr/>                

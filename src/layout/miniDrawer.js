@@ -14,7 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems } from './tileData';
 import BlogPosts from '../component/BlogPosts';
-
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -116,8 +116,9 @@ class MiniDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Kortlog.
-            </Typography>
+              Kortlog.              
+            </Typography>                  
+            <Link to="/SetPostPage" style={{'margin-left':'70%','margin-right':'1%'}}>New Post</Link>      
           </Toolbar>
         </AppBar>
         <Drawer

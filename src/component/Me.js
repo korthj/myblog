@@ -18,6 +18,7 @@ class Me extends Component {
                 mes: res.val().me
             })       
         ));
+        
     }
     
     render(){
