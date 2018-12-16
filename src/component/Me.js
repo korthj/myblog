@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {fire, getFireDB,setPosts} from '../Firebase';
+import {fire, getFireDB} from '../Firebase';
 import {Link} from 'react-router-dom';
 
 class Me extends Component {

@@ -1,0 +1,86 @@
+[debug] [2018-12-16T12:06:12.314Z] ----------------------------------------------------------------------
+[debug] [2018-12-16T12:06:12.316Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-12-16T12:06:12.316Z] CLI Version:   6.1.2
+[debug] [2018-12-16T12:06:12.316Z] Platform:      darwin
+[debug] [2018-12-16T12:06:12.316Z] Node Version:  v8.9.4
+[debug] [2018-12-16T12:06:12.316Z] Time:          Sun Dec 16 2018 21:06:12 GMT+0900 (KST)
+[debug] [2018-12-16T12:06:12.316Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-16T12:06:12.325Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-16T12:06:12.325Z] > authorizing via signed-in user
+[debug] [2018-12-16T12:06:12.325Z] [iam] checking project myblog-201805 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2018-12-16T12:06:12.327Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/myblog-201805:testIamPermissions  
+
+[debug] [2018-12-16T12:06:13.832Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-16T12:06:13.833Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/myblog-201805  
+ 
+[debug] [2018-12-16T12:06:15.053Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'myblog-201805'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-16T12:06:15.058Z] >>> HTTP REQUEST PUT https://myblog-201805.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+[debug] [2018-12-16T12:06:16.282Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax for database myblog-201805 is valid
+[debug] [2018-12-16T12:06:16.284Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/myblog-201805/versions  
+
+[debug] [2018-12-16T12:06:27.956Z] <<< HTTP RESPONSE 503
+[debug] [2018-12-16T12:06:27.957Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2018-12-16T12:06:28.308Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Sun, 16 Dec 2018 12:06:27 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "1; mode=block",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
+      "accept-ranges": "none",
+      "connection": "close"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/myblog-201805/versions",
+        "path": "/v1beta1/sites/myblog-201805/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/myblog-201805/versions"
+      },
+      "method": "POST"
+    }
+  }
+}

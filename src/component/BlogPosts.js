@@ -2,24 +2,24 @@ import React,{ Component } from 'react';
 import * as actions from '../action/posts';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import '../style/post.css'
+
 
 class BlogPosts extends Component {
     componentWillMount() {
        this.props.fetchPosts();
        
     }
-    //화면상 출력은 최근것 부터이지만 맵핑 시 링크는 오래된게 처음에 온다.
+    //배열 거꾸로 뒤집어서 최근 것 부터 화면에 뿌려준다.
     renderPosts() {
         const id = Object.keys(this.props.posts).reverse();
         return Object.keys(this.props.posts).map((key) =>{
                   return (
-                    <article className="card" key={key}>
-                        <Link to={"/posts/" + id[key] } >
-                            <picture className="thumbnail">
-                                <img src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt="A banana that looks like a bird"/>
-                            </picture>
-                            <div className="card-content">
-                                <h2>{this.props.posts[key].title}</h2>
+                    <article className="w3-quarter" key={key}>
+                        <Link to={"/posts/" + id[key] } >                                
+                            <div>
+                                <img src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg"/>
+                                <h3>{this.props.posts[key].title}</h3>
                                 <p>{this.props.posts[key].content}</p>
                             </div>                    
                         </Link>
@@ -29,19 +29,14 @@ class BlogPosts extends Component {
             );
         }
 
-
     render() {
-        if(!this.props.posts) {
-            return <div>Empty Post!</div>
+        if(this.props.posts.length == 0) {
+            return <div style={{textAlign:'center'}}>현재 작성된 게시물이 없습니다.</div>
         };
         return (
-            <main className="main-area">
-                <div className="centered">
-                    <section className="cards">  
-                        {this.renderPosts()}    
-                    </section>                        
-                </div>                        
-            </main>
+                <div className="w3-row-padding w3-padding-16 w3-center">                   
+                            {this.renderPosts()}                    
+                </div>            
         )        
     };
 };
@@ -49,7 +44,6 @@ class BlogPosts extends Component {
  function mapStateToProps(state){
     return {
         posts : state.posts,
-        postKey : state.postKey
     };
 }
 

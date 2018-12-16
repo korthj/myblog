@@ -65,9 +65,9 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing.unit * 7,
+    width: theme.spacing.unit * 0,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9,
+      width: theme.spacing.unit * 0,
     },
   },
   toolbar: {
@@ -79,9 +79,14 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: '#d6d6d6',
-    padding: theme.spacing.unit * 3,
+    backgroundColor: '#ffffff',
+    padding: theme.spacing.unit * 4,
   },
+  //jsx에서 변환되기 위해선 문자열 표시
+  Link: {
+    marginLeft:70+'%',
+    marginRight:1+'%'
+  }
 });
 
 class MiniDrawer extends React.Component {
@@ -118,7 +123,7 @@ class MiniDrawer extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               Kortlog.              
             </Typography>                  
-            <Link to="/SetPostPage" style={{'margin-left':'70%','margin-right':'1%'}}>New Post</Link>      
+            <Link to="/SetPostPage" className={classes.Link} >New Post</Link>      
           </Toolbar>
         </AppBar>
         <Drawer

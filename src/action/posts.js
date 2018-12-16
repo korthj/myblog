@@ -9,6 +9,7 @@ export const fetchPosts = () => {
     return async dispatch => {
         getPosts().on("value", snapshot => {
             const posts = [];
+            
             snapshot.forEach(ss => {
                 posts.push(ss.val());
             });         
