@@ -1,160 +1,120 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import classNames from 'classnames';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
-import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems } from './tileData';
-import BlogPosts from '../component/BlogPosts';
+import { Layout, Menu, Breadcrumb, Icon,} from 'antd';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, {Component} from 'react';
+import '../style/miniDrawer.css'
+import BlogMain from '../component/BlogMain'; 
+import PostShow from '../component/PostShow';
+import Me from '../component/Me';
+import SetPostPage from '../component/SetPostPage';
+import LoginForm from '../component/login';
 import {Link} from 'react-router-dom';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
-const drawerWidth = 240;
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: '100%',
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    backgroundColor:'#232323' ,
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing.unit * 0,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 0,
-    },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: '#ffffff',
-    padding: theme.spacing.unit * 4,
-  },
-  //jsx에서 변환되기 위해선 문자열 표시
-  Link: {
-    marginLeft:70+'%',
-    marginRight:1+'%'
+const {
+  Header, Content, Footer, Sider,
+} = Layout;
+const SubMenu = Menu.SubMenu;
+
+
+class SiderDemo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      userEmail : false,
+      collapsed : true
+    };
+    this.logoutHandler = this.logoutHandler.bind(this);
+  };
+  
+  componentDidMount(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        this.setState({
+          userEmail : true
+        })
+      }else{
+        this.setState({
+          userEmail : false
+        })
+      }
+    })
+  };
+ 
+  logoutHandler = () => {
+    firebase.auth().signOut().then(function() {
+      console.log("logout seccess");
+      this.props.history.push("/");
+    }).catch(function(error) {
+      console.log("logout error");
+    });
+    
   }
-});
 
-class MiniDrawer extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+  onCollapse = (collapsed) => {
+    this.setState({ collapsed });
+  }
 
   render() {
-    const { classes, theme } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+    const {userEmail} = this.state;
+    return ( 
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider
+          collapsible
+          collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
         >
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+          <div className="logo" />
+          <Menu theme="dark" mode="inline">
+          <Menu.Item key="home">
+              <Icon type="home" />
+              <span><Link to={"/"} style={{color : '#FFFFFF'}}>Home.</Link></span>
+            </Menu.Item>
+            <Menu.Item key="1">
+              <Icon type="user" />
+              <span><Link to="/me" style={{color:'#FFFFFF'}}>About.</Link></span>
+            </Menu.Item>
+            <SubMenu
+              key="sub1"
+              title={<span><Icon type="desktop" /><span>포스팅.</span></span>}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Kortlog.              
-            </Typography>                  
-            <Link to="/SetPostPage" className={classes.Link} >New Post</Link>      
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
+              <Menu.Item key="2">프로그래밍</Menu.Item>
+              <Menu.Item key="3">잡담</Menu.Item>
+              <Menu.Item key="4">온갖리뷰</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ background:'#f0f2f5', padding: 0,textAlign:"center"}}><font style={{color:'#404040'}}>kortlog.</font></Header>
+          <div className="newpostbutton">
+            { userEmail  !=  false && 
+              <Link to="/SetPostPage" style={{color: 'rgba(0, 0, 0, 0.15)'}}>새글</Link>
+            }           
           </div>
-          <Divider />
-          <List>{mailFolderListItems}</List>
-          <Divider />
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <BlogPosts />
-          
-        </main>
-      </div>
+          <div className="logoutbutton">
+            { userEmail == false && 
+              <LoginForm/>
+            }
+          </div>
+          <div className="logoutbutton">
+            { userEmail != false && 
+              <Link to="/" onClick={this.logoutHandler} style={{color: 'rgba(0, 0, 0, 0.15)'}}>logout</Link>
+            }
+          </div>
+          <Content style={{ margin: '0 16px' }}>
+              <Route exact path="/" component={ BlogMain } />
+              <Route path="/posts/:id" component={PostShow}/>
+              <Route path="/me" component={ Me } />
+              <Route path="/SetPostPage" component={ SetPostPage } />
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            kortlog.com ©2018 Development by kort.
+          </Footer>
+        </Layout>
+      </Layout>
     );
   }
 }
 
-MiniDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default SiderDemo;

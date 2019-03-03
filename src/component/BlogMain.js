@@ -1,12 +1,12 @@
 import React,{ Component } from 'react';
-import MiniDrawer from '../layout/miniDrawer';
+import BlogPosts from '../component/BlogPosts';
 
 class BlogMain extends Component {
 
     render() {
         return (
             <div>
-                <MiniDrawer/>
+                <BlogPosts/>
             </div>
         );
     }

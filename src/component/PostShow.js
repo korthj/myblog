@@ -15,7 +15,7 @@ export default class PostShow extends Component {
         this.deleteHandler = this.deleteHandler.bind(this);
         this.pageBackHandler = this.pageBackHandler.bind(this);
     }
-   
+
    componentDidMount(){
        //포스트를 가져와서 배열 인덱스를 맵을 사용하여 파라미터로 넘어온 아이디와 비교하여 일치하는 포스트를 스테이트에 저장한다.
         getPosts().on('value',snapshot => {
@@ -67,13 +67,15 @@ export default class PostShow extends Component {
                 </p>
                 <hr/>                
                 <p>{post.date}</p>
-                <hr/>                
-                <img className="img-fluid rounded" src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt=""/>
-                <hr/>                
+                <hr/>
+                
+                <img src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg" alt=""/>
+                
+                <hr/><hr/>                
                 <p className="lead">{post.content} </p>
                 <hr/>                
            
-                </div>
+                </div> 
                 </div>
                 </div>
            </div>

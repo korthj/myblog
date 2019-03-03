@@ -18,7 +18,7 @@ class BlogPosts extends Component {
                     <article className="w3-quarter" key={key}>
                         <Link to={"/posts/" + id[key] } >                                
                             <div>
-                                <img src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg"/>
+                                <img className="imgStyle" src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg"/>
                                 <h3>{this.props.posts[key].title}</h3>
                                 <p>{this.props.posts[key].content}</p>
                             </div>                    
