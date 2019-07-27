@@ -141,7 +141,7 @@ class ShowPost extends React.Component {
           <div className={classes.toolbar} />
           
           <Route path="/posts/:id" component={PostShow}/>
-          
+
         </main>
       </div>
     );

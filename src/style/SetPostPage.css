@@ -6,6 +6,7 @@
    text-align: center;
 }
 
+
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
@@ -73,3 +74,112 @@ input[type=submit]:hover {
     margin-top: 6px;
 }
 
+#imgUpload {
+    background-color: whitesmoke;
+    margin-top: 10px;
+    margin-left: 8%;
+}
+
+#textContent {
+    height: 200;
+}
+
+#customImg img{
+    max-width: 10em;
+    max-height: 10em;
+}
+
+[contentEditable] {
+    -webkit-appearance: textfield;
+    appearance: textfield;
+}
+
+.drag-resize {
+  position: absolute;
+  border: 1px dashed transparent;
+  z-index: 999;
+  padding: 5px;
+  margin-top: -5px;
+  margin-left: -5px;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  /*transition: all 0.1s linear;*/
+}
+.drag-resize:hover {
+  border-color: rgb(0, 150, 253);
+  cursor: move;
+  display: block;
+}
+.drag-resize:hover .drag-resize-handlers {
+  display: block;
+}
+.drag-resize > div.drag-window {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.drag-resize-handlers {
+  position: absolute;
+  display: none;
+  width: 5px;
+  height: 5px;
+  font-size: 1px;
+  background: rgb(0, 150, 253);
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  opacity: 0;
+  border: 1px solid rgb(255, 255, 255);
+}
+.drag-resize .drag-resize-handlers {
+  opacity: 1;
+}
+.drag-resize-handlers:hover {
+  transform: scale(3); /*chrome*/
+  -webkit-transform: scale(3); /*nodewebkit*/
+}
+.drag-resize-handlers[data-direction="tl"] {
+  top: -5px;
+  left: -5px;
+  cursor: nw-resize;
+}
+.drag-resize-handlers[data-direction="tm"] {
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  cursor: n-resize;
+}
+.drag-resize-handlers[data-direction="tr"] {
+  top: -5px;
+  right: -5px;
+  cursor: ne-resize;
+}
+
+.drag-resize-handlers[data-direction="ml"] {
+  top: 50%;
+  margin-top: -5px;
+  left: -5px;
+  cursor: w-resize;
+}
+.drag-resize-handlers[data-direction="mr"] {
+  top: 50%;
+  margin-top: -5px;
+  right: -5px;
+  cursor: e-resize;
+}
+
+.drag-resize-handlers[data-direction="bl"] {
+  bottom: -5px;
+  left: -5px;
+  cursor: sw-resize;
+}
+.drag-resize-handlers[data-direction="bm"] {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  cursor: s-resize;
+}
+.drag-resize-handlers[data-direction="br"] {
+  bottom: -5px;
+  right: -5px;
+  cursor: se-resize;
+}

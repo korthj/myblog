@@ -10,7 +10,6 @@ import reducers from './reducer/index';
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
 import MiniDrawer from '../src/layout/miniDrawer';
 
-
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(

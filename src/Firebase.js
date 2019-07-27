@@ -1,4 +1,6 @@
-import * as firebase from 'firebase'
+import * as firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/storage';
 
 let database;
 
@@ -9,6 +11,14 @@ let config = {
     projectId: "myblog-201805",
     storageBucket: "myblog-201805.appspot.com",
     messagingSenderId: "143506485432",
+    userId: "khj12005@yeah.com"
+};
+
+export const fireStorage = () => {
+    if(!firebase.apps.length){
+        firebase.initializeApp(config);
+    }
+    return firebase.storage();
 };
 
 //FireBase RealTimeDB의 경우 .set을하면 지정위치에서 하위노드를 포함하여 모든 데이터가 덮어씌워진다.

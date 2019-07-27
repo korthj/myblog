@@ -224,3 +224,32 @@ img {
 .imgStyle{
 	margin-bottom: 1em;
 }
+
+#postThumbnail{
+	max-width: 12em;
+	max-height: 20em;
+	text-align: center;
+}
+
+#textContent{
+	max-width : 12em;
+	max-height : 8em;
+	text-overflow : ellipsis;
+	overflow : hidden;
+	display : -webkit-box;
+	-webkit-line-clamp : 2;
+	/* autoprefixer: off */
+	-webkit-box-orient : vertical;
+	/* autoprefixer: on */
+}
+
+.custom-card-list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap : wrap;
+}
+
+.custom-card-aticle{
+	margin-left : 1em;
+	margin-right : 1em;
+}

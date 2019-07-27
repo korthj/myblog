@@ -4,29 +4,34 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../style/post.css'
 
-
+//메인 페이지 글 뿌려주는 컴포넌트
 class BlogPosts extends Component {
     componentWillMount() {
        this.props.fetchPosts();
-       
     }
+  
+    componentWillUnmount(){
+        this.props.fetchPosts();
+    }
+
     //배열 거꾸로 뒤집어서 최근 것 부터 화면에 뿌려준다.
-    renderPosts() {
+    renderPosts() { 
+        //
         const id = Object.keys(this.props.posts).reverse();
-        return Object.keys(this.props.posts).map((key) =>{
-                  return (
-                    <article className="w3-quarter" key={key}>
+        return Object.keys(this.props.posts).map((key) =>{   
+                let content = this.props.posts[key].content;         
+                return (
+                    <article className="custom-card-aticle" key={key}> 
                         <Link to={"/posts/" + id[key] } >                                
-                            <div>
-                                <img className="imgStyle" src="https://www.abbeyjfitzgerald.com/wp-content/uploads/2017/02/image-example-01.jpg"/>
+                            <div id="postThumbnail">
+                                <img className="imgStyle" src={this.props.posts[key].thumbnail}/>
                                 <h3>{this.props.posts[key].title}</h3>
-                                <p>{this.props.posts[key].content}</p>
+                                <p id="textContent">{content.replace(/(<([^>]+)>)/gi,"\n")}</p>
                             </div>                    
                         </Link>
-                    </article>                              
+                    </article>                         
                   )
-                }     
-            );
+            });
         }
 
     render() {
@@ -34,8 +39,8 @@ class BlogPosts extends Component {
             return <div style={{textAlign:'center'}}>현재 작성된 게시물이 없습니다.</div>
         };
         return (
-                <div className="w3-row-padding w3-padding-16 w3-center">                   
-                            {this.renderPosts()}                    
+                <div className="custom-card-list">                   
+                    {this.renderPosts()}                    
                 </div>            
         )        
     };

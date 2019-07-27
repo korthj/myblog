@@ -10,6 +10,7 @@ import LoginForm from '../component/login';
 import {Link} from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import ModifyPosts from '../component/ModifyPosts';
 
 
 const {
@@ -23,7 +24,7 @@ class SiderDemo extends Component {
     super(props);
     this.state = {
       userEmail : false,
-      collapsed : true
+      collapsed : true,
     };
     this.logoutHandler = this.logoutHandler.bind(this);
   };
@@ -36,7 +37,7 @@ class SiderDemo extends Component {
         })
       }else{
         this.setState({
-          userEmail : false
+          userEmail : false,
         })
       }
     })
@@ -44,8 +45,6 @@ class SiderDemo extends Component {
  
   logoutHandler = () => {
     firebase.auth().signOut().then(function() {
-      console.log("logout seccess");
-      this.props.history.push("/");
     }).catch(function(error) {
       console.log("logout error");
     });
@@ -103,10 +102,13 @@ class SiderDemo extends Component {
             }
           </div>
           <Content style={{ margin: '0 16px' }}>
+
               <Route exact path="/" component={ BlogMain } />
               <Route path="/posts/:id" component={PostShow}/>
               <Route path="/me" component={ Me } />
               <Route path="/SetPostPage" component={ SetPostPage } />
+              <Route path="/modifyPosts/:id" component={ModifyPosts}/>
+
           </Content>
           <Footer style={{ textAlign: 'center' }}>
             kortlog.com ©2018 Development by kort.

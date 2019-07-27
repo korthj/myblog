@@ -1,9 +1,13 @@
 #postDeleteButton {
-    margin-left:70%;
+    margin-left:1%;
+    color: #DC143C;
 }
 
+#modifyButton {
+    margin-left: 70%;
+}
 
-button {
+button{
     -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
     -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
     -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
@@ -12,6 +16,8 @@ button {
     
     text-decoration: none;
     border-radius: 4px;
+    padding-top: 2px;
+    padding-bottom: 0px;
 }
 
 button {
@@ -20,6 +26,6 @@ button {
 }
 
 button:hover {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(104, 62, 62, 0.85);
     box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
 }
