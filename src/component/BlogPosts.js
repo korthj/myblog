@@ -10,7 +10,7 @@ class BlogPosts extends Component {
        this.props.fetchPosts();
     }
   
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.fetchPosts();
     }
 
@@ -22,7 +22,7 @@ class BlogPosts extends Component {
                 let content = this.props.posts[key].content;         
                 return (
                     <article className="custom-card-aticle" key={key}> 
-                        <Link to={"/posts/" + id[key] } >                                
+                        <Link to={ "/posts/" + id[key] } >                                
                             <div id="postThumbnail">
                                 <img className="imgStyle" src={this.props.posts[key].thumbnail}/>
                                 <h3>{this.props.posts[key].title}</h3>

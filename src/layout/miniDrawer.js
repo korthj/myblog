@@ -2,7 +2,8 @@ import { Layout, Menu, Breadcrumb, Icon,} from 'antd';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, {Component} from 'react';
 import '../style/miniDrawer.css'
-import BlogMain from '../component/BlogMain'; 
+import BlogMain from '../component/BlogMain';
+import BlogPosts from '../component/BlogPosts';
 import PostShow from '../component/PostShow';
 import Me from '../component/Me';
 import SetPostPage from '../component/SetPostPage';
@@ -11,7 +12,8 @@ import {Link} from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import ModifyPosts from '../component/ModifyPosts';
-
+import PostShowfromCategory from '../component/PostShowfromCategory';
+import { todayCount, totalCount } from '../Firebase';
 
 const {
   Header, Content, Footer, Sider,
@@ -28,8 +30,9 @@ class SiderDemo extends Component {
     };
     this.logoutHandler = this.logoutHandler.bind(this);
   };
-  
+
   componentDidMount(){
+
     firebase.auth().onAuthStateChanged((user) => {
       if(user){
         this.setState({
@@ -39,6 +42,25 @@ class SiderDemo extends Component {
         this.setState({
           userEmail : false,
         })
+      }
+    });   
+
+    // let today = todayCount();
+    // today.once('value',(snapshot) => {
+    //   if ( snapshot.val() != null ){
+    //     let count = Number( snapshot.val() ) + 1;
+    //     today.set(count);
+    //     document.getElementById("today").textContent = count;
+        
+    //   }
+    // })
+    
+    let total = totalCount();
+    total.once('value',(snapshot) => {
+      if ( snapshot.val() != null ){
+        let count = Number( snapshot.val() ) + 1;
+        total.set(count);
+        document.getElementById("total").textContent = count;
       }
     })
   };
@@ -78,9 +100,21 @@ class SiderDemo extends Component {
               key="sub1"
               title={<span><Icon type="desktop" /><span>포스팅.</span></span>}
             >
-              <Menu.Item key="2">프로그래밍</Menu.Item>
-              <Menu.Item key="3">잡담</Menu.Item>
-              <Menu.Item key="4">온갖리뷰</Menu.Item>
+              <Menu.Item key="2">
+                <span>
+                  <Link to={ "/categorys/"+"프로그래밍" } style={{color:'#FFFFFF'}} >프로그래밍</Link>
+                </span>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <span>
+                  <Link to={ "/categorys/"+"잡담" } style={{color:'#FFFFFF'}} >잡다한것</Link>
+                </span>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <span>
+                  <Link to={ "/categorys/"+"리뷰" } style={{color:'#FFFFFF'}} >리뷰</Link>
+                </span>
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
@@ -103,15 +137,19 @@ class SiderDemo extends Component {
           </div>
           <Content style={{ margin: '0 16px' }}>
 
-              <Route exact path="/" component={ BlogMain } />
+              <Route exact path="/" component={ BlogPosts } />
               <Route path="/posts/:id" component={PostShow}/>
               <Route path="/me" component={ Me } />
               <Route path="/SetPostPage" component={ SetPostPage } />
               <Route path="/modifyPosts/:id" component={ModifyPosts}/>
+              <Route path="/categorys/:category" component={PostShowfromCategory}/>
+              <Route path="/todaycountreset" component={BlogMain} />
 
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            kortlog.com ©2018 Development by kort.
+            <div>kortlog.com ©2018 Development by kort.</div>
+            <div id="todayCount"> <span id="today"></span></div>
+            <div id="totalCount">Total: <span id="total"></span></div>
           </Footer>
         </Layout>
       </Layout>

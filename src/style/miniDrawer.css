@@ -4,6 +4,14 @@
   margin: 16px;
 }
 
+#todayCount, #totalCount {
+  display:inline-block;
+}
+
+#todayCount {
+  padding-right: 1em;
+}
+
 .newpostbutton {
   position:absolute;
   left:6em;
