@@ -8,7 +8,17 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'react-quill/dist/quill.snow.css'; 
 import ReactQuill, { Quill } from 'react-quill'; 
+import uuid4 from 'uuid4';
 
+const uuid = () => {
+  //string 문자열 저장, 디비 인덱싱 성능 위해 토근의 배열 순서 2-1-0-3-4 순서로 수 체계 변환
+  const tokens = uuid4().split('-');
+  return tokens[2] + tokens[1] + tokens[0] + tokens[3] + tokens[4];
+}
+
+export{
+  uuid
+}
 //게시물 작성 페이지
 class SetPostPage extends Component {
     constructor(props){
@@ -74,7 +84,8 @@ class SetPostPage extends Component {
             const blob = new Blob([event.target.result], {type: "image/jpeg"});
             
             const storageUrl = 'postImages/';
-            const storageRef = fireStorage().ref(storageUrl + file.name);
+            const addFileName = uuid();
+            const storageRef = fireStorage().ref(storageUrl + file.name + addFileName);
             const uploadTask = storageRef.put(blob);
 
             //업로드 완료 후 바로 url 다운로드하여 에디터에 url 삽입

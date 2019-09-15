@@ -29,6 +29,9 @@ export default class PostShow extends Component {
     componentDidMount(){ 
        //포스트를 가져와서 배열 인덱스를 맵을 사용하여 파라미터로 넘어온 아이디와 비교하여 일치하는 포스트를 스테이트에 저장한다.
         getPosts().on('value',snapshot => {
+            if (this.isUnmounted) {
+                return;
+            }
             if( snapshot != null){
             this.deleteKey = Object.keys(snapshot.val())[this.props.match.params.id];
             }
@@ -45,7 +48,9 @@ export default class PostShow extends Component {
             });            
         });
    };
-
+   componentWillUnmount() {
+    this.isUnmounted = true;
+  }
 
    //버튼 클릭시 삭제 함수
     deleteHandler(){

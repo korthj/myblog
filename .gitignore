@@ -19,3 +19,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+webpack.config.js
+.firebaserc
+database.rules.json
+firebase.json
+fireDB.json
+package-lock.json
+package.json
+.firebase/hosting.YnVpbGQ.cache
+public/manifest.json
+src/Firebase.js
